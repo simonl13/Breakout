@@ -14,9 +14,14 @@ public class PlayerMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		temp = Input.mousePosition;
-		temp.z = transform.position.z - mainCamera.transform.position.z;
+		Vector3 temp = Input.mousePosition;
+		temp.z = 10f;
 		transform.position = mainCamera.ScreenToWorldPoint (temp);
+
+
+		//temp = Input.mousePosition;
+		//temp.z = transform.position.z - mainCamera.transform.position.z;
+		//transform.position = mainCamera.ScreenToWorldPoint (temp);
 
 		//y = Input.GetAxis ("Mouse X");
 		//Vector3 localForce = TransformD(new Vector3(9, 3, y);
