@@ -15,7 +15,7 @@ public class BallMove : MonoBehaviour {
 
 	void Update () {
 		if (transform.position.x > 11.58f) {
-			//Lives.lives -= 1;
+			Lives.lives -= 1;
 			transform.position = new Vector3 (3.64f, 3.59f, 0.26f);
 			move.velocity = Vector3.zero;
 			move.AddForce (Vector3.right * 1000f);
@@ -28,32 +28,32 @@ public class BallMove : MonoBehaviour {
 	
 	void OnCollisionEnter (Collision collisionInfo) {
 		sound.Play ();
-		Debug.Log ("Collision");
 		Vector3 oldVelocity = move.velocity;
 		ContactPoint hit = collisionInfo.contacts [0];
 		Vector3 reflection = Vector3.Reflect (oldVelocity, hit.normal);
-		move.velocity = Vector3.zero;
-		Debug.Log (reflection);
 		move.velocity = reflection;
-		move.AddForce (reflection * 10f);
-		Debug.Log (oldVelocity);
-		Debug.Log (move.velocity);
+		//move.AddForce (reflection * 100f);
 		//Vector3 oldVelocity = move.velocity;
 		//oldVelocity.x *= -1;
 		//oldVelocity.z *= -1;
 		//move.velocity = oldVelocity;
 	
 		if (collisionInfo.collider.tag == "Brick") {
-			move.AddForce (Vector3.right * 100f);
+			move.AddForce (Vector3.right);
 			Destroy (collisionInfo.collider.gameObject);
-			Debug.Log ("Brick");
+
+			Debug.Log ("Brick Collision");
+
 			Lives.score += 100;
 
 		}
 		if (collisionInfo.collider.tag == "SpecialBrick") {
 			Destroy (collisionInfo.collider.gameObject);
-			Debug.Log ("SpecialBrick");
+			Debug.Log ("Special Brick Collision");
 			Lives.score += 100;
+			if (Lives.lives < 3) {
+				Lives.heals += 1;
+			}
 		}
 	}
 

@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		rotationZ += Input.GetAxis ("Mouse X") * sensitivityZ;
-		rotationZ = Mathf.Clamp (rotationZ, -90, 90);
+		rotationZ = Mathf.Clamp (rotationZ, -35, 35);
 
 		temp = new Vector3 (Input.mousePosition.x, 9.5206f, 22f);
 		transform.position = mainCamera.ScreenToWorldPoint (temp);
