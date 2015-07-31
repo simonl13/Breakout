@@ -24,6 +24,11 @@ public class BallMove : MonoBehaviour {
 			Debug.Log ("Test");
 			move.AddForce (Vector3.left * 10f);
 		}
+		if (Input.GetKey (KeyCode.E)) {
+			transform.position = new Vector3 (3.64f, 3.59f, 0.26f);
+			move.velocity = Vector3.zero;
+			move.AddForce (Vector3.right * 1000f);
+		}
 	}
 	
 	void OnCollisionEnter (Collision collisionInfo) {
@@ -39,7 +44,7 @@ public class BallMove : MonoBehaviour {
 		//move.velocity = oldVelocity;
 	
 		if (collisionInfo.collider.tag == "Brick") {
-			move.AddForce (Vector3.right);
+			move.AddForce (Vector3.left);
 			Destroy (collisionInfo.collider.gameObject);
 
 			Debug.Log ("Brick Collision");
